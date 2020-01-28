@@ -29,6 +29,7 @@ password = input("Enter encryption password: ")
 # Decrypting
 decrypted = decrypt(s, password)
 
+# Check is correct password?
 if decrypted == b'':
     print("Error: Password is incorrect!")
     exit()
