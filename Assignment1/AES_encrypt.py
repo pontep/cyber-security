@@ -3,6 +3,7 @@ import hashlib
 from Crypto.Cipher import AES
 from Crypto import Random
 
+
 BLOCK_SIZE = 16
 
 def pad(s): return s + (BLOCK_SIZE - len(s) %
@@ -17,10 +18,12 @@ def encrypt(raw, password):
 
 
 # Read text file.
-fileUrl = 'student.txt'
-f = open(fileUrl, 'r')
+f = open('student.txt', 'r')
 s = f.read()
 f.close()
+# # Read another file.
+data = open('4918.jpg','rb').read()
+digest = hashlib.sha256(data).hexdigest()
 
 # Check file is empty?
 if s == '':
@@ -36,5 +39,8 @@ f = open('studentEncrypted.txt', 'wb')
 f.write(encrypted)
 f.close()
 
+encrypted = encrypt(data, password)
+open('4918.aes','wb').write(encrypted)
+
 # Output
-print("Encrypted success!\n{}\n".format(bytes.decode(encrypted)))
+print("Encrypted success!")
